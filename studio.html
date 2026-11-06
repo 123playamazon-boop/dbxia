@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DBXIA Studio — Create your photos</title>
+<style>
+  :root{--bg:#f4f4f4;--paper:#fff;--ink:#1a1a1a;--soft:#5c5c5c;--line:#e3e1dc;--red:#cc0000;--red2:#a00000;--ok:#2e7d46}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;line-height:1.5}
+  .mast{background:var(--paper);border-top:3px solid var(--red);border-bottom:1px solid var(--line)}
+  .mast .in{max-width:720px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between}
+  .brand{font-weight:900;letter-spacing:2px;font-size:20px}.brand span{color:var(--red)}
+  .tag{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--soft)}
+  main{max-width:620px;margin:0 auto;padding:26px 20px 60px}
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:24px 22px;margin-bottom:18px}
+  h1{font-size:24px;margin-bottom:6px}
+  .sub{color:var(--soft);font-size:15px;margin-bottom:18px}
+  .seg{display:flex;gap:10px;margin:14px 0}
+  .seg button{flex:1;padding:14px;border:2px solid var(--line);background:#fff;border-radius:10px;font-size:16px;font-weight:700;cursor:pointer;color:var(--ink)}
+  .seg button.on{border-color:var(--red);background:#fff5f5;color:var(--red2)}
+  .drop{border:2px dashed #ccc;border-radius:12px;padding:26px;text-align:center;color:var(--soft);cursor:pointer;background:#fafafa}
+  .drop.has{border-color:var(--ok);color:var(--ok);background:#f3f8f4}
+  .drop img{max-height:180px;border-radius:8px;margin:0 auto}
+  .cta{display:block;width:100%;background:var(--red);color:#fff;border:none;border-radius:10px;padding:16px;font-size:17px;font-weight:800;cursor:pointer;margin-top:16px}
+  .cta:disabled{background:#d7a2a2;cursor:not-allowed}
+  .cta:hover:not(:disabled){background:var(--red2)}
+  .note{font-size:12.5px;color:var(--soft);text-align:center;margin-top:10px}
+  .prog{font-size:15px;font-weight:700;margin-bottom:14px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+  .cell{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fafafa;position:relative;aspect-ratio:3/4}
+  .cell img{width:100%;height:100%;object-fit:cover;display:block}
+  .cell.ph{display:flex;align-items:center;justify-content:center;color:#bbb;font-size:13px}
+  .dl{position:absolute;left:0;right:0;bottom:0;background:rgba(0,0,0,.6);color:#fff;text-align:center;font-size:12px;font-weight:700;padding:7px;cursor:pointer}
+  .spin{width:26px;height:26px;border:3px solid #ddd;border-top-color:var(--red);border-radius:50%;animation:s 1s linear infinite;margin:0 auto}
+  @keyframes s{to{transform:rotate(360deg)}}
+  .center{text-align:center}
+  a{color:var(--red2)}
+</style>
+</head>
+<body>
+<div class="mast"><div class="in"><div class="brand">DB<span>X</span>IA</div><div class="tag">Your Studio</div></div></div>
+<main id="app">
+  <div class="card center"><div class="spin"></div><p class="note" style="margin-top:12px">Loading your studio…</p></div>
+</main>
+
+<script>
+  var FN = "https://nwpoweamwnjqbgnwpusq.supabase.co/functions/v1/dbxia";
+  var SID = new URLSearchParams(location.search).get("session_id") || "";
+  var app = document.getElementById("app");
+  var gender = "woman", fileB64 = "", fileMime = "";
+
+  function h(html){ app.innerHTML = html; }
+  function esc(s){ return (s||"").replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c];}); }
+
+  async function api(qs, opts){ var r = await fetch(FN + qs, opts); return await r.json(); }
+
+  async function boot(){
+    if(!SID){ h('<div class="card"><h1>Hmm, link looks off</h1><p class="sub">We couldn\'t find your order. Please use the link from your purchase confirmation.</p></div>'); return; }
+    // poll for the paid order (webhook may lag a few seconds)
+    for(var i=0;i<12;i++){
+      var st = await api("?action=status&session_id="+encodeURIComponent(SID));
+      if(st.found){
+        if(st.status==="generating"||st.status==="done"){ return gallery(st); }
+        return uploader(st); // paid, ready to upload
+      }
+      await new Promise(function(r){setTimeout(r,2500);});
+    }
+    h('<div class="card center"><h1>Confirming your payment…</h1><p class="sub">This can take a few seconds. If it doesn\'t load, refresh this page in a moment.</p><button class="cta" onclick="location.reload()">Refresh</button></div>');
+  }
+
+  function uploader(st){
+    h('<div class="card">\
+      <h1>Create your photos</h1>\
+      <p class="sub">You unlocked <b>'+(st.credits)+' photo'+(st.credits>1?'s':'')+'</b>. Pick the look, upload one clear selfie, and we\'ll do the rest.</p>\
+      <div class="seg">\
+        <button id="gw" class="on" onclick="setG(\'woman\')">Woman</button>\
+        <button id="gm" onclick="setG(\'man\')">Man</button>\
+      </div>\
+      <label class="drop" id="drop" for="file"><div id="dropin">Tap to upload your selfie<br><span style="font-size:12px">forward-facing, good light</span></div></label>\
+      <input id="file" type="file" accept="image/*" style="display:none">\
+      <button class="cta" id="go" disabled onclick="start()">GENERATE MY PHOTOS</button>\
+      <p class="note">Takes a couple of minutes. Keep this page open.</p>\
+    </div>');
+    document.getElementById("file").addEventListener("change", onFile);
+  }
+  window.setG = function(g){ gender=g; document.getElementById("gw").className = g==="woman"?"on":""; document.getElementById("gm").className = g==="man"?"on":""; };
+  function onFile(e){
+    var f = e.target.files[0]; if(!f) return;
+    fileMime = f.type || "image/jpeg";
+    var rd = new FileReader();
+    rd.onload = function(){
+      var url = rd.result;
+      fileB64 = String(url).split(",")[1] || "";
+      var d = document.getElementById("drop"); d.className="drop has";
+      document.getElementById("dropin").innerHTML = '<img src="'+url+'">';
+      document.getElementById("go").disabled = false;
+    };
+    rd.readAsDataURL(f);
+  }
+  window.start = async function(){
+    document.getElementById("go").disabled = true;
+    document.getElementById("go").textContent = "Starting…";
+    var st = await api("?action=generate", { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({ session_id:SID, gender:gender, selfie_b64:fileB64, mime:fileMime }) });
+    if(st.error){ document.getElementById("go").disabled=false; document.getElementById("go").textContent="GENERATE MY PHOTOS"; alert("Something went wrong ("+st.error+"). Please try again."); return; }
+    gallery({ status:"generating", total:st.total, done:0, images:[] });
+  };
+
+  async function dl(url){
+    try{ var r=await fetch(url); var b=await r.blob(); var a=document.createElement("a"); a.href=URL.createObjectURL(b); a.download="dbxia.png"; a.click(); }
+    catch(e){ window.open(url,"_blank"); }
+  }
+  window.dl = dl;
+
+  function gallery(st){
+    render(st);
+    if(st.status!=="done"){ poll(); }
+  }
+  function render(st){
+    var total = st.total || st.credits || (st.images?st.images.length:0);
+    var imgs = st.images || [];
+    var cells = "";
+    for(var i=0;i<total;i++){
+      if(imgs[i]) cells += '<div class="cell"><img src="'+imgs[i]+'"><div class="dl" onclick="dl(\''+imgs[i]+'\')">Download</div></div>';
+      else cells += '<div class="cell ph"><div class="spin"></div></div>';
+    }
+    var head = st.status==="done"
+      ? '<h1>Your photos are ready 🎉</h1><p class="sub">Tap Download on each one. Bookmark this page to come back to them.</p>'
+      : '<div class="prog">Creating your photos… '+imgs.length+' of '+total+' ready</div><p class="sub">This takes a couple of minutes — keep this page open.</p>';
+    h('<div class="card">'+head+'<div class="grid">'+cells+'</div></div>');
+  }
+  async function poll(){
+    for(var i=0;i<120;i++){
+      await new Promise(function(r){setTimeout(r,4000);});
+      var st = await api("?action=status&session_id="+encodeURIComponent(SID));
+      if(st.found){ render(st); if(st.status==="done") return; }
+    }
+  }
+
+  boot();
+</script>
+</body>
+</html>
