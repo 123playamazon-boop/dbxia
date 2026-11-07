@@ -47,18 +47,27 @@
   /* offer box */
   .offer{border:2px solid var(--gold);border-radius:12px;background:#fbf8f1;padding:24px 20px;margin:28px 0;font-family:-apple-system,sans-serif}
   .offer h3{font-family:-apple-system,sans-serif;font-size:21px;text-align:center;margin-bottom:4px}
-  .offer .sub{text-align:center;color:var(--soft);font-size:14px;margin-bottom:16px}
-  .incl{list-style:none;max-width:330px;margin:0 auto 14px;padding:0;font-size:14px;text-align:left}
-  .incl li{position:relative;padding-left:22px;margin-bottom:8px}
-  .incl li::before{content:"\2713";position:absolute;left:0;top:0;color:var(--red);font-weight:800}
-  .ipack{display:block;width:100%;text-align:left;background:#fff;border:1px solid var(--line);border-radius:10px;padding:13px 15px;margin-bottom:10px;cursor:pointer;font-family:inherit;font-size:16px;display:flex;justify-content:space-between;align-items:center;transition:border-color .15s,box-shadow .15s}
-  .ipack:hover{border-color:var(--gold);box-shadow:0 2px 10px rgba(176,125,30,.12)}
-  .ipack.best{border:2px solid var(--gold);background:#fffdf7}
-  .ipack .q{font-weight:700}
-  .ipack .tag{display:block;font-size:11px;color:var(--gold);font-weight:700;letter-spacing:.3px}
-  .ipack .p{font-weight:800;color:var(--gold2);white-space:nowrap;margin-left:12px}
-  .ipack .old{color:#aaa;text-decoration:line-through;font-size:12px;margin-right:6px;font-weight:400}
-  .cta{display:block;width:100%;text-align:center;background:var(--gold);color:#fff;font-family:-apple-system,sans-serif;font-weight:800;font-size:17px;padding:15px;border:none;border-radius:10px;cursor:pointer;margin-top:4px}
+  .offer .sub{text-align:center;color:#555;font-size:15.5px;margin-bottom:16px;line-height:1.45}
+  .incl{list-style:none;max-width:360px;margin:0 auto 16px;padding:0;font-size:16px;text-align:left}
+  .incl li{position:relative;padding-left:26px;margin-bottom:11px;line-height:1.4}
+  .incl li::before{content:"\2713";position:absolute;left:0;top:0;color:var(--red);font-weight:800;font-size:17px}
+  .offer h3{font-family:-apple-system,sans-serif;font-size:24px;text-align:center;margin-bottom:6px;line-height:1.2}
+  .paks{max-width:400px;margin:4px auto 16px}
+  .pak{position:relative;display:flex;justify-content:space-between;align-items:center;width:100%;text-align:left;background:#fff;border:2px solid var(--line);border-radius:14px;padding:16px 16px;margin-bottom:13px;cursor:pointer;font-family:inherit;transition:border-color .15s,box-shadow .15s,background .15s}
+  .pak:hover{border-color:var(--gold)}
+  .pak.sel{border-color:var(--gold);background:#fffaf0;box-shadow:0 5px 18px rgba(204,0,0,.12)}
+  .pak-l{display:flex;align-items:center;gap:13px;min-width:0}
+  .pak-radio{width:23px;height:23px;border:2px solid #cfcfcf;border-radius:50%;flex:none;position:relative}
+  .pak.sel .pak-radio{border-color:var(--gold)}
+  .pak.sel .pak-radio::after{content:"";position:absolute;inset:4px;background:var(--gold);border-radius:50%}
+  .pak-name{display:block;font-size:19px;font-weight:800;color:#111;line-height:1.15}
+  .pak-per{display:block;font-size:13px;color:var(--soft);margin-top:3px}
+  .pak-r{text-align:right;line-height:1.05;white-space:nowrap;padding-left:10px}
+  .pak-old{display:block;font-size:15px;color:#9a9a9a;text-decoration:line-through;font-weight:600}
+  .pak-now{display:block;font-size:29px;font-weight:900;color:var(--gold2);margin-top:2px}
+  .pak-ribbon{position:absolute;top:-11px;left:14px;background:var(--gold);color:#fff;font-size:10.5px;font-weight:800;letter-spacing:.5px;padding:3px 10px;border-radius:20px;text-transform:uppercase}
+  .pak-save{position:absolute;top:-11px;right:14px;background:var(--ok);color:#fff;font-size:10.5px;font-weight:800;letter-spacing:.3px;padding:3px 10px;border-radius:20px}
+  .cta{display:block;width:100%;text-align:center;background:var(--gold);color:#fff;font-family:-apple-system,sans-serif;font-weight:800;font-size:19px;padding:17px;border:none;border-radius:12px;cursor:pointer;margin-top:4px;letter-spacing:.3px;box-shadow:0 4px 14px rgba(204,0,0,.28)}
   .cta:hover{background:var(--gold2)}
   .reassure{font-family:-apple-system,sans-serif;text-align:center;font-size:12.5px;color:var(--soft);margin-top:10px}
   .guar{font-family:-apple-system,sans-serif;display:flex;gap:12px;align-items:flex-start;background:#f3f8f4;border:1px solid #cfe6d6;border-radius:10px;padding:14px;margin:22px 0;font-size:14.5px}
@@ -186,17 +195,35 @@
     <h3>Get a feed that looks like you already made it</h3>
     <div class="sub">One selfie in, a full set of high-impact photos out — in minutes, to your inbox. Here's what's included:</div>
     <ul class="incl">
-      <li>You in several luxury scenes (jet, car, yacht, red carpet)</li>
-      <li>Your exact face — natural, no "AI look"</li>
-      <li>Scenes for her and for him</li>
-      <li>Free redo if any shot looks off</li>
-      <li>Delivered in minutes, straight to your inbox</li>
+      <li>A full set of you in high-status scenes — jet, car, yacht, red carpet, office</li>
+      <li>Your <b>exact face</b> — real and natural, zero "AI look"</li>
+      <li>Scenes built for her <b>and</b> for him</li>
+      <li>A free redo on any shot that doesn't look like you</li>
+      <li>Delivered in minutes, straight to your inbox — no app, no wait</li>
     </ul>
-    <div class="sub" style="margin-bottom:12px">Launch pricing on your first pack — it goes up after.</div>
-    <button class="ipack best" data-pack="10"><span class="q">10 photos <span class="tag">★ Most popular</span></span><span class="p"><span class="old">$79</span>$27</span></button>
-    <button class="ipack" data-pack="20"><span class="q">20 photos</span><span class="p"><span class="old">$129</span>$44</span></button>
-    <button class="ipack" data-pack="5"><span class="q">5 photos</span><span class="p"><span class="old">$39</span>$17</span></button>
-    <button class="ipack" data-pack="1"><span class="q">1 photo — just try it</span><span class="p"><span class="old">$19</span>$7</span></button>
+    <div class="sub" style="margin-bottom:14px">Launch price on your first pack. <b>It goes up after launch</b> — this is the lowest it will ever be.</div>
+    <div class="paks">
+      <button class="pak sel" data-pack="10">
+        <span class="pak-ribbon">★ Most popular</span><span class="pak-save">Save $52</span>
+        <span class="pak-l"><span class="pak-radio"></span><span class="pak-txt"><span class="pak-name">10 photos</span><span class="pak-per">just $2.70 per photo</span></span></span>
+        <span class="pak-r"><span class="pak-old">$79</span><span class="pak-now">$27</span></span>
+      </button>
+      <button class="pak" data-pack="20">
+        <span class="pak-ribbon">Best value</span><span class="pak-save">Save $85</span>
+        <span class="pak-l"><span class="pak-radio"></span><span class="pak-txt"><span class="pak-name">20 photos</span><span class="pak-per">best price — $2.20 per photo</span></span></span>
+        <span class="pak-r"><span class="pak-old">$129</span><span class="pak-now">$44</span></span>
+      </button>
+      <button class="pak" data-pack="5">
+        <span class="pak-save">Save $22</span>
+        <span class="pak-l"><span class="pak-radio"></span><span class="pak-txt"><span class="pak-name">5 photos</span><span class="pak-per">$3.40 per photo</span></span></span>
+        <span class="pak-r"><span class="pak-old">$39</span><span class="pak-now">$17</span></span>
+      </button>
+      <button class="pak" data-pack="1">
+        <span class="pak-save">Save $12</span>
+        <span class="pak-l"><span class="pak-radio"></span><span class="pak-txt"><span class="pak-name">1 photo</span><span class="pak-per">just try it, risk-free</span></span></span>
+        <span class="pak-r"><span class="pak-old">$19</span><span class="pak-now">$7</span></span>
+      </button>
+    </div>
     <button class="cta" data-pack="10">GET MY PHOTOS →</button>
     <div class="reassure">Secure checkout · Apple Pay &amp; card · instant access</div>
   </div>
@@ -260,8 +287,16 @@
     if(url&&url!=="#"&&url.indexOf("STRIPE_LINK")!==0){ window.location.href=url; }
     else { document.getElementById("offer").scrollIntoView({behavior:"smooth"}); }
   }
-  document.querySelectorAll("[data-pack]").forEach(function(b){
-    b.addEventListener("click", function(){ goPack(b.dataset.pack); });
+  var selPack="10";
+  function selectPack(p){
+    selPack=p;
+    document.querySelectorAll(".pak").forEach(function(c){ c.classList.toggle("sel", c.dataset.pack===p); });
+  }
+  document.querySelectorAll(".pak").forEach(function(c){
+    c.addEventListener("click", function(){ selectPack(c.dataset.pack); });
+  });
+  document.querySelectorAll(".cta").forEach(function(b){
+    b.addEventListener("click", function(){ goPack(selPack); });
   });
 
   // ===== NEWSBREAK PIXEL (replace NEWSBREAK_PIXEL_ID) =====
