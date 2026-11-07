@@ -133,6 +133,10 @@
   .bagif{max-width:400px;margin:10px auto 6px;border-radius:12px;overflow:hidden;box-shadow:0 6px 20px rgba(0,0,0,.14);line-height:0}
   .bagif img{width:100%;height:auto;display:block}
   .bagif-cap{font-family:-apple-system,sans-serif;text-align:center;font-size:12.5px;color:var(--soft);margin:6px 0 2px;line-height:1.4}
+  .midcta{text-align:center;margin:26px 0 8px}
+  .midcta button{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:#fff;font-family:-apple-system,sans-serif;font-weight:800;font-size:18px;padding:15px 30px;border:none;border-radius:50px;cursor:pointer;box-shadow:0 5px 16px rgba(204,0,0,.3);transition:transform .12s,background .15s}
+  .midcta button:hover{background:var(--gold2);transform:translateY(-1px)}
+  .midcta .sub{display:block;font-family:-apple-system,sans-serif;font-size:12.5px;color:var(--soft);margin-top:8px}
 </style>
 </head>
 <body>
@@ -164,6 +168,10 @@
   <p>The thing making it possible has a name: <b>DBXIA</b> — a little AI studio that does one job really well. You send it a normal selfie, and it drops you into the scene: the private jet, the supercar, the beach in Dubai. Your exact face. No studio, no trip, no $4,000 flight.</p>
 
   <div class="pull">"Fake it till you make it" isn't a saying anymore. It's a $7 download — and the internet genuinely can't tell the difference.</div>
+  <div class="midcta">
+    <button class="cta-jump" type="button">See the photos &amp; price →</button>
+    <span class="sub">Takes one selfie · from $7 · delivered in minutes</span>
+  </div>
 
   <h2>How it actually works</h2>
   <p>It's almost boringly simple. You take one selfie — forward-facing, decent light, nothing professional. You pick the vibe. A few minutes later the finished photos land in your inbox, ready to post. That's it. The hard part — the lighting, the location, the "how is this real" — is done for you.</p>
@@ -348,6 +356,12 @@
     if(url&&url!=="#"&&url.indexOf("STRIPE_LINK")!==0){ window.location.href=url; }
     else { document.getElementById("offer").scrollIntoView({behavior:"smooth"}); }
   }
+  document.querySelectorAll(".cta-jump").forEach(function(b){
+    b.addEventListener("click", function(){
+      try{ if(window.clarity){ clarity("set","midcta","click"); } }catch(e){}
+      var o=document.getElementById("offer"); if(o){ o.scrollIntoView({behavior:"smooth",block:"start"}); }
+    });
+  });
   var selPack="10";
   function selectPack(p){
     selPack=p;
