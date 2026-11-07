@@ -52,7 +52,7 @@
   .incl li{position:relative;padding-left:26px;margin-bottom:11px;line-height:1.4}
   .incl li::before{content:"\2713";position:absolute;left:0;top:0;color:var(--red);font-weight:800;font-size:17px}
   .offer h3{font-family:-apple-system,sans-serif;font-size:24px;text-align:center;margin-bottom:6px;line-height:1.2}
-  .paks{max-width:400px;margin:4px auto 16px}
+  .paks{max-width:none;margin:4px auto 16px}
   .pak{position:relative;display:flex;justify-content:space-between;align-items:center;width:100%;text-align:left;background:#fff;border:2px solid var(--line);border-radius:14px;padding:16px 16px;margin-bottom:13px;cursor:pointer;font-family:inherit;transition:border-color .15s,box-shadow .15s,background .15s}
   .pak:hover{border-color:var(--gold)}
   .pak.sel{border-color:var(--gold);background:#fffaf0;box-shadow:0 5px 18px rgba(204,0,0,.12)}
@@ -101,6 +101,21 @@
   .ctimer{display:flex;flex-direction:column;align-items:center;gap:4px;background:#1a1a1a;color:#fff;border-radius:10px;padding:12px;margin-top:14px;text-align:center}
   .ctimer span{font-size:12.5px;letter-spacing:.3px;opacity:.85}
   .ctimer b{font-size:30px;font-weight:800;font-variant-numeric:tabular-nums;color:#ffd4cf;letter-spacing:1px}
+
+  @media(min-width:620px){
+    .offer{padding:30px 34px}
+    .offer h3{font-size:27px}
+    .offer .sub{font-size:16.5px}
+    .incl{max-width:420px;font-size:17px}
+    .pak{padding:20px 22px;border-radius:16px;margin-bottom:15px}
+    .pak-radio{width:26px;height:26px}
+    .pak-name{font-size:22px}
+    .pak-per{font-size:14.5px}
+    .pak-old{font-size:17px}
+    .pak-now{font-size:34px}
+    .pak-ribbon,.pak-save{font-size:12px;padding:4px 12px;top:-13px}
+    .cta{font-size:21px;padding:19px}
+  }
 </style>
 </head>
 <body>
@@ -127,6 +142,7 @@
 
   <h2>So who <em>is</em> the richest person you follow?</h2>
   <p>Honestly? You can't tell from a feed anymore — and that's the whole story. The woman on the red carpet and the guy from two towns over can now post the exact same jet, the same yacht, the same designer life. Same face-card energy. You'd swear both are loaded.</p>
+  <p>And here's the part that really flips it: this isn't just regular people doing it. A lot of the <b>celebrities you follow — people with real money</b> — aren't actually in half the places their feed says they are. The jet, the resort, the "casual Tuesday" in Paris: a lot of it is staged, and a growing amount of it is straight-up AI. They use it to keep the feed jaw-dropping and the engagement high, because they understand the game better than anyone — on social media, the photo <em>is</em> the reality. If the people who could fly anywhere are letting AI do the flying for them, why would you book the $4,000 ticket?</p>
 
   <p>The thing making it possible has a name: <b>DBXIA</b> — a little AI studio that does one job really well. You send it a normal selfie, and it drops you into the scene: the private jet, the supercar, the beach in Dubai. Your exact face. No studio, no trip, no $4,000 flight.</p>
 
