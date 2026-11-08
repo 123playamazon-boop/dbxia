@@ -91,6 +91,10 @@
   .sticky .cta{padding:14px 20px;font-size:15px;flex:1;max-width:360px}
   @media(max-width:560px){ .steps{grid-template-columns:1fr} .sticky .pz{display:none} }
   .wa{display:inline-block;vertical-align:-1px}
+
+  .plans li a.planLink{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;color:inherit;text-decoration:none;cursor:pointer}
+  .plans li{transition:transform .12s ease, box-shadow .12s ease}
+  .plans li:hover{transform:translateY(-2px)}
 </style>
 </head>
 <body>
@@ -118,8 +122,8 @@
       <div class="bacard"><img loading="lazy" src="https://dbxia.vercel.app/preview-woman-ba.jpg" alt="Antes e depois — mulher"><div class="cap">Mesmo rosto. Só a IA de estúdio trabalhando 🔥</div></div>
     </div>
     <div style="margin-top:26px">
-      <a class="cta waLink" data-ev="hero"><span class="wa">💬</span> QUERO MINHAS FOTOS AGORA</a>
-      <div class="reassure">⚡ Acesso imediato · 📲 Funciona em qualquer celular · 🔒 100% no WhatsApp</div>
+      <a class="cta goOffer" data-ev="hero" href="#oferta">👑 QUERO MINHAS FOTOS AGORA</a>
+      <div class="reassure">⚡ Acesso imediato · 📲 Pix ou cartão · 🔒 Checkout seguro</div>
     </div>
   </div>
 </div>
@@ -219,12 +223,12 @@
         ✅ Entrega <b>em minutos</b>, direto no seu WhatsApp
       </div>
       <ul class="plans">
-        <li class="best"><span class="q">15 fotos <span class="star">⭐ O MAIS ESCOLHIDO</span></span><span class="p"><span class="old">R$147</span>R$54,90</span></li>
-        <li><span class="q">20 fotos</span><span class="p"><span class="old">R$197</span>R$84,90</span></li>
-        <li><span class="q">3 fotos <span style="color:var(--mut);font-weight:400;font-size:12px">· pra testar</span></span><span class="p"><span class="old">R$57</span>R$9,90</span></li>
+        <li class="best"><a class="planLink" href="https://pay.cakto.com.br/e3qvu8n_1264181" target="_blank" rel="noopener" data-ev="plan15" data-val="54.90"><span class="q">15 fotos <span class="star">⭐ O MAIS ESCOLHIDO</span></span><span class="p"><span class="old">R$147</span>R$54,90</span></a></li>
+        <li><a class="planLink" href="https://pay.cakto.com.br/39dqgec_1264198" target="_blank" rel="noopener" data-ev="plan20" data-val="84.90"><span class="q">20 fotos</span><span class="p"><span class="old">R$197</span>R$84,90</span></a></li>
+        <li><a class="planLink" href="https://pay.cakto.com.br/5csjn6t_1264162" target="_blank" rel="noopener" data-ev="plan3" data-val="9.90"><span class="q">3 fotos <span style="color:var(--mut);font-weight:400;font-size:12px">· pra testar</span></span><span class="p"><span class="old">R$57</span>R$9,90</span></a></li>
       </ul>
-      <a class="cta block waLink" data-ev="oferta"><span class="wa">💬</span> COMEÇAR AGORA NO WHATSAPP</a>
-      <div class="reassure">Você escolhe o pacote e paga por <b>Pix</b> direto na conversa 💬</div>
+      <a class="cta block ckLink" data-ev="oferta" href="https://pay.cakto.com.br/5csjn6t_1264162" target="_blank" rel="noopener" data-val="9.90">👉 COMEÇAR AGORA — 3 fotos por R$9,90</a>
+      <div class="reassure">Toque no seu pacote acima e pague por <b>Pix ou cartão</b> no checkout seguro 🔒</div>
     </div>
     <div class="guarantee">
       <div class="ic">🛡️</div>
@@ -239,7 +243,7 @@
     <h2>Por que <span class="gold">não tem cara de IA</span></h2>
     <p class="lead">É a <b>nossa própria IA de estúdio</b> (não é aquele filtro tosco). O seu rosto fica idêntico, com pele natural e luz de verdade — tipo foto tirada por fotógrafo. Se a foto sair com cara de IA, você pede pra refazer ou pega o dinheiro de volta.</p>
     <div class="center">
-      <a class="cta waLink" data-ev="whynot"><span class="wa">💬</span> QUERO VER FICANDO REAL</a>
+      <a class="cta goOffer" data-ev="whynot" href="#oferta">👑 QUERO VER FICANDO REAL</a>
     </div>
   </div>
 </section>
@@ -252,7 +256,7 @@
       <details><summary>Fica parecido comigo mesmo?</summary><p>Fica idêntico 💎 A IA mantém o seu rosto — só troca o cenário pra uma vibe de alto impacto. E tem garantia de 7 dias: se não ficar realista, devolvemos tudo.</p></details>
       <details><summary>Que foto eu preciso mandar?</summary><p>Só uma selfie simples do celular, de frente e com boa luz. Nada profissional.</p></details>
       <details><summary>Quanto tempo demora?</summary><p>Fica pronto em poucos minutos, tudo ali no WhatsApp.</p></details>
-      <details><summary>Como eu pago?</summary><p>Por Pix, na hora, dentro da própria conversa. Rápido e seguro.</p></details>
+      <details><summary>Como eu pago e recebo?</summary><p>Você paga por Pix ou cartão no checkout seguro. Assim que o pagamento é aprovado, você recebe no WhatsApp a mensagem pra mandar sua selfie — e em minutos suas fotos chegam ali mesmo.</p></details>
       <details><summary>É homem e mulher?</summary><p>Os dois 😎 Tem cenários pra ele (jato, carrão, escritório) e pra ela (tapete vermelho, resort, bolsa de grife).</p></details>
     </div>
   </div>
@@ -270,7 +274,7 @@
   <div class="wrap center">
     <h2>Bora virar o <span class="hl">Dublê de Rico</span>?</h2>
     <p class="lead">1 selfie entra, um ensaio de alto impacto sai. Direto no WhatsApp.</p>
-    <a class="cta waLink" data-ev="final"><span class="wa">💬</span> QUERO MINHAS FOTOS AGORA</a>
+    <a class="cta goOffer" data-ev="final" href="#oferta">👑 QUERO MINHAS FOTOS AGORA</a>
     <div class="reassure">🛡️ Garantia de 7 dias · ⚡ Pronto em minutos</div>
   </div>
 </section>
@@ -283,22 +287,25 @@
 <div class="sticky">
   <div class="in">
     <div class="pz">A partir de <b>R$9,90</b></div>
-    <a class="cta waLink" data-ev="sticky"><span class="wa">💬</span> QUERO MINHAS FOTOS</a>
+    <a class="cta goOffer" data-ev="sticky" href="#oferta">👑 QUERO MINHAS FOTOS</a>
   </div>
 </div>
 
 <script>
   // ===== CONFIG =====
-  var WA_NUMBER = "13056849224";
-  var WA_TEXT = "Quero minhas fotos do Dublê de Rico 🔥 (vim do site)"; // marcador p/ medir A/B
-  function waLink(){ return "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(WA_TEXT); }
-  document.querySelectorAll(".waLink").forEach(function(a){
-    a.setAttribute("href", waLink());
-    a.setAttribute("target","_blank");
-    a.setAttribute("rel","noopener");
+  // CTAs de checkout (planos + botão da oferta) -> Cakto
+  document.querySelectorAll(".ckLink, .planLink").forEach(function(a){
     a.addEventListener("click", function(){
-      try{ if(window.fbq){ fbq('track','Lead',{content_name:'dublerico', source:a.dataset.ev}); fbq('trackCustom','WhatsAppClick',{btn:a.dataset.ev}); } }catch(e){}
-      try{ if(window.clarity){ clarity('set','wa_click', a.dataset.ev); } }catch(e){}
+      try{ if(window.fbq){ fbq('track','InitiateCheckout',{content_name:'dublerico', value:parseFloat(a.dataset.val||'0'), currency:'BRL', source:a.dataset.ev}); } }catch(e){}
+      try{ if(window.clarity){ clarity('set','checkout', a.dataset.ev); } }catch(e){}
+    });
+  });
+  // CTAs genéricos -> rolar suave até a oferta
+  document.querySelectorAll(".goOffer").forEach(function(a){
+    a.addEventListener("click", function(e){
+      e.preventDefault();
+      try{ if(window.fbq){ fbq('track','Lead',{content_name:'dublerico', source:a.dataset.ev}); } }catch(e){}
+      var o=document.getElementById("oferta"); if(o) o.scrollIntoView({behavior:"smooth", block:"start"});
     });
   });
 
